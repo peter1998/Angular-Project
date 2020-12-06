@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "firstfireproject-4912c": {
+      "hosting": {
+        "my-first-project": [
+          "firstfireproject-4912c"
+        ]
+      }
+    }
+  }
+}
