@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  
+    <a class="navbar-brand" routerLink="/home">PC Games</a>
+  
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar = !toggleNavbar" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarsMain" [ngbCollapse]="toggleNavbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a routerLink="/home" class="nav-link">Home </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/games" class="nav-link">Games</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contacts" class="nav-link">Contacts</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+          <a routerLink="/login" class="nav-link">Login</a>
+        </li>
+     </ul>
+    </div>
+  </nav>
