@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +6,7 @@ import { Observable} from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-first-project';
-  items: Observable<any[]>;
-  constructor(private db: AngularFirestore){
+  toggleNavbar = true;
 
-  }
-  ngOnInit() {
-    this.items = this.db.collection('users').valueChanges();
-
-    this.items.subscribe( i=> {console.log(i)} );
-  }
-
+  title = 'Angular-Project';
 }
-
-
