@@ -14,4 +14,8 @@ export class GameServiceService {
  getGames():Observable<Game[]>{
    return of(TESTGAMES);
  }
+
+ getGame(id: string){
+   return TESTGAMES.find(p=>p.id==id);
+ }
 }
