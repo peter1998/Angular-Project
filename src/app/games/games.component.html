@@ -1,1 +1,6 @@
 <p>games works!</p>
+<ul>
+    <li *ngFor="let game of games$ | async">
+        <a [routerLink]="['/game', game.id]">{{ game.title }}</a>
+    </li>
+</ul>
