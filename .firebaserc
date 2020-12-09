@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "firstfireproject-4912c": {
+      "hosting": {
+        "Angular-Project": [
+          "firstfireproject-4912c"
+        ]
+      }
+    }
+  }
+}

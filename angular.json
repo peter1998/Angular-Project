@@ -118,6 +118,10 @@
               "devServerTarget": "Angular-Project:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
