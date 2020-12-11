@@ -15,16 +15,15 @@ const routes: Routes = [
   {path: 'games', component: GamesComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'login', component: LoginComponent},
-  //{path: 'game', component: GameDetailsComponent},
   {path: 'game/:id', component: GameDetailsComponent},
  
   {path:'edit/game/:id', component: EditGameComponent},
-  {path:'edit/game/', component: EditGameComponent},
+  {path:'new/game', component: EditGameComponent},
 
-  {path: '', component: HomeComponent}
+  {path: '', component: HomeComponent},
 
-  // {path: '404', component: NotFoundComponent},
-  // {path: '**', redirectTo: '/404'}
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 
 
 ];
