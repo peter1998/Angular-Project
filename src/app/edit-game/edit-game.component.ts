@@ -74,8 +74,8 @@ export class EditGameComponent implements OnInit {
       this.service.addGame(game)
       .then(
         o => (
-          console.log(o.id)
-          //this.router.navigate(['/game/', o.id])
+          //console.log(o.id)
+        this.router.navigate(['/game/', o.id])
         )
       ),
       err => {
