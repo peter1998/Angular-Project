@@ -20,14 +20,34 @@ export class GameDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
-  this.activatedroute.paramMap.subscribe(params=>{
-    console.log(params);
-    this.id = params.get('id');
-    if (this.id != null){
-      this.game = this.service.getGame(this.id);
-      console.log(this.game);
+
+    this.id = this.activatedroute.snapshot.paramMap.get("id");
+    if(this.id !=null)
+    {
+      this.showGame();    
     }
-  });
+
   }
+
+
+showGame(){
+  this.service.getGame(this.id)
+      .subscribe(value => 
+        {
+          this.game = value;
+        });
+      }
+
+  onEdit(){
+    console.log("Test EDIT work");
+
+    this.router.navigate(['/edit/game/', this.game.id]);
+
+  }
+
+  onCancel(){
+    this.router.navigate(['/games/']);
+  }
+
 
 }

@@ -5,8 +5,8 @@
     <button class="navbar-toggler" type="button" (click)="toggleNavbar = !toggleNavbar" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse" id="navbarsMain" [ngbCollapse]="toggleNavbar">
+  <!-- //*ngIf="!useService.isLogged" --->
+    <div class="collapse navbar-collapse"  id="navbarsMain" [ngbCollapse]="toggleNavbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a routerLink="/home" class="nav-link" routerLinkActive="active">Home </a>
@@ -20,8 +20,15 @@
       </ul>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
-          <a routerLink="/login" class="nav-link" routerLinkActive="active">Login</a>
+          <a routerLink="/login"   class="nav-link" routerLinkActive="active">Login</a>
         </li>
      </ul>
     </div>
+    <!-- (click)="loginHandler()" -->
+    <!-- <div class="collapse navbar-collapse" *ngIf="!useService.isLogged" id="navbarsMain" [ngbCollapse]="toggleNavbar">
+      <div>
+        HELLO, [someusername]@localdomain.com
+        <a (click) = "logoutHandler()">Logout</a>
+      </div>
+    </div> -->
   </nav>

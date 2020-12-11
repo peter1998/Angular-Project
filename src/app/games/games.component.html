@@ -1,6 +1,13 @@
-<p>games works!</p>
-<ul>
-    <li *ngFor="let game of games$ | async">
-        <a [routerLink]="['/game', game.id]">{{ game.title }}</a>
-    </li>
-</ul>
+<div class="row">
+
+    <div class="col-md-4" *ngFor="let game of games$ | async">
+      <div class="card mb-4 shadow-sm" style="width: 18rem;">
+        <img src="{{ game.image }}" class="card-img-top" alt="{{ game.title }}">
+        <div class="card-body">
+          <h5 class="card-title"><a [routerLink]="['/game', game.id]">{{ game.title }}</a></h5>
+          <p class="card-text">{{ game.description }}</p>
+        </div>
+      </div>
+    </div>
+  
+  </div>

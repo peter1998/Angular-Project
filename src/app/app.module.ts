@@ -14,6 +14,12 @@ import { GameDetailsComponent } from './game-details/game-details.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { UserService } from './user/user.service';
+import { UserModule } from './user/user.module';
+
+// Reactive Form Module
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditGameComponent } from './edit-game/edit-game.component';
 
 @NgModule({
   declarations: [
@@ -24,16 +30,21 @@ import { environment } from 'src/environments/environment';
     ContactsComponent,
     LoginComponent,
     NotFoundComponent,
-    GameDetailsComponent
+    GameDetailsComponent,
+    EditGameComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    UserModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: UserService,useClass: UserService
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

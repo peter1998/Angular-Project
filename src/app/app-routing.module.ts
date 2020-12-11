@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
+import { EditGameComponent } from './edit-game/edit-game.component';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GamesComponent } from './games/games.component';
 import { HomeComponent } from './home/home.component';
@@ -14,13 +15,16 @@ const routes: Routes = [
   {path: 'games', component: GamesComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'game', component: GameDetailsComponent},
+  //{path: 'game', component: GameDetailsComponent},
   {path: 'game/:id', component: GameDetailsComponent},
-  {path: '', component: HomeComponent},
+ 
+  {path:'edit/game/:id', component: EditGameComponent},
+  {path:'edit/game/', component: EditGameComponent},
 
+  {path: '', component: HomeComponent}
 
-  {path: '404', component: NotFoundComponent},
-  {path: '**', redirectTo: '/404'}
+  // {path: '404', component: NotFoundComponent},
+  // {path: '**', redirectTo: '/404'}
 
 
 ];

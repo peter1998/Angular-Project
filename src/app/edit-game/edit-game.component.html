@@ -1,0 +1,27 @@
+<h2>EDIT</h2>
+
+<div *ngIf="editForm">
+  <img src="{{ oldimage }}" />
+
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label for="title">Image</label>
+        <input formControlName="image" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input formControlName="title" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input formControlName="description" type="text" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
+
+  </form>
+</div>

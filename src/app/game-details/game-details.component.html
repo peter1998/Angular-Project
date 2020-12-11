@@ -1,1 +1,13 @@
-<p>game-details works!</p>
+<div *ngIf="game">
+    <p>
+        <img src="{{ game.image }}" alt="{{ game.title }}">
+    </p>
+    <p>
+      {{ game.title }}
+    </p>
+    <p>
+      {{ game.description }}
+    </p>
+    <button type="button" (click)="onEdit()" class="btn btn-primary">Edit</button>
+    <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
+</div>

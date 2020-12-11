@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { GamesComponent } from './games/games.component';
 import { Game } from './models/game';
+import { map } from 'rxjs/operators';
 import { TESTGAMES } from './services/test-data';
 
 @Injectable({
@@ -9,13 +11,47 @@ import { TESTGAMES } from './services/test-data';
 })
 export class GameServiceService {
 
-  constructor() { }
+  constructor(private db: AngularFirestore) { }
 
  getGames():Observable<Game[]>{
-   return of(TESTGAMES);
+  return this.db.collection<Game>('games').snapshotChanges().pipe(
+    map(actions => actions.map(a => {
+      const data = a.payload.doc.data() as Game;
+      const id = a.payload.doc.id;
+      return { id, ...data };
+    }))
+  );
  }
 
- getGame(id: string){
-   return TESTGAMES.find(p=>p.id==id);
- }
+ 
+ getGame(id: string) : Observable<Game> {
+  return this.db.collection<Game>('games').doc(id)
+    .get()
+    .pipe(
+        map( d => {
+          return { id, ...d.data() }
+        }
+      )
+    );
+}
+
+updateGame(game: Game){
+  return this.db.collection<Game>('games').doc(game.id)
+          .update({
+            title: game.title,
+            description: game.description,
+            image: game.image
+          });
+}
+
+addGame(game: Game){
+  return this.db.collection('games')
+          .add({
+            title: game.title,
+            description: game.description,
+            image: game.image
+          });
+}
+
+ 
 }
