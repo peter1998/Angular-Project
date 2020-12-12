@@ -62,7 +62,7 @@ export class EditGameComponent implements OnInit {
       this.service.updateGame(game)
       .then(
         o => (
-          this.router.navigate(['/game/', this.id])
+          this.router.navigate(['/games/', this.id])
         )
       ),
       err => {
@@ -74,22 +74,23 @@ export class EditGameComponent implements OnInit {
       this.service.addGame(game)
       .then(
         o => (
-          //console.log(o.id)
-        this.router.navigate(['/game/', o.id])
+        this.router.navigate(['/games/', o.id])
         )
       ),
       err => {
         console.log(err);
       }
-
-      //todo: use await update operation before navigation
+      
       this.router.navigate(['/games/']);
 
     }
   }
 
   onCancel() {
-    this.router.navigate(['/game/', this.id]);
+    let path : string[] = ['/games'];
+    if (this.id != null) path.push(this.id);
+
+    this.router.navigate(path);
   }
 
   

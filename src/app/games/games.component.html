@@ -4,7 +4,7 @@
       <div class="card mb-4 shadow-sm" style="width: 18rem;">
         <img src="{{ game.image }}" class="card-img-top" alt="{{ game.title }}">
         <div class="card-body">
-          <h5 class="card-title"><a [routerLink]="['/game', game.id]">{{ game.title }}</a></h5>
+          <h5 class="card-title"><a [routerLink]="['/games', game.id]">{{ game.title }}</a></h5>
           <p class="card-text">{{ game.description }}</p>
         </div>
       </div>

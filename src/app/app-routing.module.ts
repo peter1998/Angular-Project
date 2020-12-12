@@ -12,13 +12,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
 
   {path: 'home', component: HomeComponent},
-  {path: 'games', component: GamesComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'game/:id', component: GameDetailsComponent},
+
+  {path: 'games/:id', component: GameDetailsComponent},
+  {path: 'games', component: GamesComponent},
  
-  {path:'edit/game/:id', component: EditGameComponent},
-  {path:'new/game', component: EditGameComponent},
+  {path:'edit/games/:id', component: EditGameComponent},
+  {path:'edit/games', component: EditGameComponent},
 
   {path: '', component: HomeComponent},
 
