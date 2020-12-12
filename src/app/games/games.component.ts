@@ -27,5 +27,16 @@ export class GamesComponent implements OnInit {
     this.router.navigate(['/edit/games/']);
   }
 
+  onEdit(id:string){
+    this.router.navigate(['/edit/games/', id]);
+  }
 
+  onDelete(id:string){
+    if(confirm('Confirm deletion')) {
+      this.service.deleteGame(id)
+        .catch (
+          err => {console.log(err);}
+        );
+    }
+  }
 }

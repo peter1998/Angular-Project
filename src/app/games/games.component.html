@@ -18,6 +18,12 @@
           <p class="card-text">{{ game.description }}</p>
         </div>
       </div>
+
+      <p class="text-center">
+        <button type="button" (click)="onEdit(game.id)" class="btn btn-outline-primary btn-sm">Edit</button>
+        <button type="button" (click)="onDelete(game.id)" class="btn btn-outline-danger btn-sm">Delete</button>
+      </p>
+
+
     </div>
-  
   </div>
