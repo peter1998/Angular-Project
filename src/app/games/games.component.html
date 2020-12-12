@@ -1,4 +1,4 @@
-<div class="row mb-4">
+<div class="row mb-4" *ngIf="authService.user | async">
   <div class="col-md text-center">
     <button type="button" (click)="onAddNew()" class="btn btn-outline-primary btn-sm">Add New Game</button>
   </div>
@@ -19,7 +19,8 @@
         </div>
       </div>
 
-      <p class="text-center">
+      <p class="text-center" *ngIf="authService.user | async">
+      
         <button type="button" (click)="onEdit(game.id)" class="btn btn-outline-primary btn-sm">Edit</button>
         <button type="button" (click)="onDelete(game.id)" class="btn btn-outline-danger btn-sm">Delete</button>
       </p>

@@ -24,8 +24,9 @@
           [ngClass]="{'is-invalid': description.errors && (description.touched || description.dirty)}">
     </div>
 
+    
     <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
-    <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
-
+    <button type="button"  (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
+    
   </form>
 </div>

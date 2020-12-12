@@ -8,8 +8,12 @@
     <p>
       {{ game.description }}
     </p>
-    <button type="button" (click)="onEdit(game.id)" class="btn btn-primary">Edit</button>
-    <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
+
+    
+      <button type="button" (click)="onEdit(game.id)" class="btn btn-primary" *ngIf="authService.user | async">Edit</button>
+      <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Return</button>
+
+    
 
 
     

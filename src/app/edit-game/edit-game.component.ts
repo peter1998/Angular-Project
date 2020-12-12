@@ -3,6 +3,7 @@ import { FormGroup,FormControl,Validators } from '@angular/forms';
 import {Router, ActivatedRoute } from '@angular/router';
 import { GameServiceService } from '../game-service.service';
 import { Game } from '../models/game';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-edit-game',
