@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup,FormControl,Validators } from '@angular/forms';
 import {Router, ActivatedRoute } from '@angular/router';
 import { GameServiceService } from '../game-service.service';
 import { Game } from '../models/game';
@@ -12,25 +12,31 @@ import { Game } from '../models/game';
 export class EditGameComponent implements OnInit {
   
   id:string;
+
   editForm: FormGroup;
-  oldimage:string;
+  title: FormControl;
+  description: FormControl;
+  image: FormControl;
 
   constructor(private activatedRoute: ActivatedRoute,
     private router:Router,
     private service:GameServiceService) { }
 
   ngOnInit(): void {
-
     this.id  = this.activatedRoute.snapshot.paramMap.get("id");
-    if (this.id != null){
-      this.loadGame();
-    }else{
+
+      this.title = new FormControl("", [Validators.required]);
+      this.description = new FormControl("", [Validators.required]);
+      this.image = new FormControl("", [Validators.required]);
 
       this.editForm = new FormGroup({
-          title: new FormControl(""),
-          description: new FormControl(""),
-          image: new FormControl("")
+        'title': this.title,
+        'description': this.description,
+        'image': this.image
       });
+
+    if (this.id != null){
+      this.loadGame();
     }
   }
 
@@ -38,14 +44,9 @@ export class EditGameComponent implements OnInit {
     this.service.getGame(this.id)
         .subscribe(value => 
           {
-            this.editForm = new FormGroup({
-                title: new FormControl(value.title),
-                description: new FormControl(value.description),
-                image: new FormControl(value.image)
-              });
-
-            // this.isNew = false;
-            this.oldimage = value.image;
+            this.title.setValue(value.title);
+            this.description.setValue(value.description);
+            this.image.setValue(value.image);
           });
 
   }
@@ -93,7 +94,5 @@ export class EditGameComponent implements OnInit {
 
     this.router.navigate(path);
   }
-
-  
 
 }
