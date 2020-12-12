@@ -11,15 +11,20 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GameDetailsComponent } from './game-details/game-details.component';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
+
 import { UserService } from './user/user.service';
 import { UserModule } from './user/user.module';
+
 
 // Reactive Form Module
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditGameComponent } from './edit-game/edit-game.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -39,10 +44,12 @@ import { EditGameComponent } from './edit-game/edit-game.component';
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
+
     UserModule,
     ReactiveFormsModule
   ],
-  providers: [{
+  providers: [AuthService,{
     provide: UserService,useClass: UserService
   }],
   bootstrap: [AppComponent]
