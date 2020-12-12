@@ -1,5 +1,15 @@
+<div class="row mb-4">
+  <div class="col-md text-center">
+    <button type="button" (click)="onAddNew()" class="btn btn-outline-primary btn-sm">Add New Game</button>
+  </div>
+</div>
+
+
 <div class="row">
 
+
+
+  
     <div class="col-md-4" *ngFor="let game of games$ | async">
       <div class="card mb-4 shadow-sm" style="width: 18rem;">
         <img src="{{ game.image }}" class="card-img-top" alt="{{ game.title }}">

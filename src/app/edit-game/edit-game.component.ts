@@ -10,10 +10,11 @@ import { Game } from '../models/game';
   styleUrls: ['./edit-game.component.css']
 })
 export class EditGameComponent implements OnInit {
+  
   id:string;
-  // isNew: boolean = true;
   editForm: FormGroup;
   oldimage:string;
+
   constructor(private activatedRoute: ActivatedRoute,
     private router:Router,
     private service:GameServiceService) { }

@@ -1,4 +1,5 @@
-<h2>EDIT</h2>
+<h2 *ngIf = "id">EDIT</h2>
+<h2 *ngIf = "!id">NEW GAME</h2>
 
 <div *ngIf="editForm">
   <img src="{{ oldimage }}" />
