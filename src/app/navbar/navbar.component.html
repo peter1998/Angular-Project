@@ -20,7 +20,15 @@
       </ul>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
-          <a routerLink="/login"   class="nav-link" routerLinkActive="active">Login</a>
+
+          <ng-container *ngIf="!(authService.user | async); else usertmp">
+          <a routerLink="user/login"   class="nav-link" routerLinkActive="active">Login</a>
+        </ng-container>
+        <ng-template #usertmp>
+          <span class="text-white">{{ (authService.user | async)?.email }}</span>
+          <a class="nav-link" (click)= "logout()" href="">Logout</a>
+        </ng-template>
+
         </li>
      </ul>
     </div>

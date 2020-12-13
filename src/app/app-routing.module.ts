@@ -8,15 +8,18 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { RegisterComponent } from './register/register.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
 
 const routes: Routes = [
 
   {path: 'home', component: HomeComponent},
   {path: 'contacts', component: ContactsComponent},
-  {path: 'login', component: LoginComponent},
-
+  {path: 'user/login', component: LoginComponent},
+  {path: 'user/register', component: RegisterComponent},
+  
+  
   {path: 'games/:id', component: GameDetailsComponent},
   {path: 'games', component: GamesComponent},
  

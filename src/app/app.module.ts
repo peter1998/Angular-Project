@@ -25,6 +25,7 @@ import { UserModule } from './user/user.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditGameComponent } from './edit-game/edit-game.component';
 import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     NotFoundComponent,
     GameDetailsComponent,
-    EditGameComponent
+    EditGameComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

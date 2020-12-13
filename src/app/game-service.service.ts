@@ -54,7 +54,8 @@ addGame(game: Game){
 }
 
 deleteGame(id: string){
-  return this.db.collection('games').doc(id).delete();
+  return this.db.collection('games').doc(id)
+          .delete();
 }
 
  

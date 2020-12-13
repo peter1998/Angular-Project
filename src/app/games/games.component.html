@@ -6,11 +6,9 @@
 
 
 <div class="row">
-
-
-
   
     <div class="col-md-4" *ngFor="let game of games$ | async">
+
       <div class="card mb-4 shadow-sm" style="width: 18rem;">
         <img src="{{ game.image }}" class="card-img-top" alt="{{ game.title }}">
         <div class="card-body">
@@ -24,7 +22,6 @@
         <button type="button" (click)="onEdit(game.id)" class="btn btn-outline-primary btn-sm">Edit</button>
         <button type="button" (click)="onDelete(game.id)" class="btn btn-outline-danger btn-sm">Delete</button>
       </p>
-
-
     </div>
+
   </div>
