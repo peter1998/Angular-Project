@@ -7,7 +7,9 @@ import { GamesComponent } from './games/games.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
 
@@ -18,8 +20,8 @@ const routes: Routes = [
   {path: 'games/:id', component: GameDetailsComponent},
   {path: 'games', component: GamesComponent},
  
-  {path:'edit/games/:id', component: EditGameComponent},
-  {path:'edit/games', component: EditGameComponent},
+  {path:'edit/games/:id', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  {path:'edit/games', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
 
   {path: '', component: HomeComponent},
 
