@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
   email: FormControl;
   password: FormControl;
 
+  errorMessage: string;
+  successMessage: string;
+
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -28,8 +31,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.authService.login(this.email.value, this.password.value);
-    this.loginForm.reset();
+    this.authService.login(this.email.value, this.password.value)
+    .then(value => {
+      this.loginForm.reset();
+    })
+    .catch(err => {
+      this.errorMessage = "Warning invalid username or password.";
+      console.log('Something went wrong:',err.message);
+    });
   }
 
   logout(){

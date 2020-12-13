@@ -16,10 +16,10 @@
 
         <form [formGroup]="loginForm">
 
-            <!-- <div>
-                <label class="error">{{errorMessage}}</label>
-                <label class="success">{{successMessage}}</label>
-            </div> -->
+            
+            <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+            <div *ngIf="successMessage" class="alert alert-primary" role="alert">{{successMessage}}</div>
+          
 
             <div class="form-group">
               <label>Email address</label>
