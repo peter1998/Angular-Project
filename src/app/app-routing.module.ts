@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'edit/games/:id', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
   {path:'edit/games', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
 
-  {path: '', component: HomeComponent},
+  {path: '', component: GamesComponent},
 
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
