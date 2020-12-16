@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditGameComponent } from './edit-game/edit-game.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
+import { GameCommentsComponent } from './game-comments/game-comments.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RegisterComponent } from './register/register.component';
     NotFoundComponent,
     GameDetailsComponent,
     EditGameComponent,
-    RegisterComponent
+    RegisterComponent,
+    GameCommentsComponent
   ],
   imports: [
     BrowserModule,
