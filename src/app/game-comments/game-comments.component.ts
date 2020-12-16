@@ -24,6 +24,12 @@ export class GameCommentsComponent implements OnInit {
 
     this.id  = this.activatedRoute.snapshot.paramMap.get("id");
     this.comments$=this.service.getComments(this.id);
+
+    this.comments$.subscribe(d=>{
+      console.log(d);
+
+    })
   }
+
 
 }
