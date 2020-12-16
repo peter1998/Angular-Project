@@ -32,19 +32,24 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.authService.login(this.email.value, this.password.value)
+      .then(value => {
+        this.loginForm.reset();
+        console.log("login user details: " + this.authService.userDetails);
+      })
+      .catch(err => {
+        this.errorMessage = "Invalid email and or password!";
+        console.log('Something went wrong:',err.message);
+      });
+    }
+
+  logout(){
+    this.authService.logout()
     .then(value => {
       this.loginForm.reset();
     })
     .catch(err => {
-      this.errorMessage = "Warning invalid username or password.";
+      this.errorMessage = "Something went wrong";
       console.log('Something went wrong:',err.message);
     });
-  }
-
-  logout(){
-    this.authService.logout()
-    .catch(err=> {
-      console.log("Something went wrong",err.message);
-    })
   }
 }

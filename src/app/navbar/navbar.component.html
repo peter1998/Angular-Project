@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse"  id="navbarsMain" [ngbCollapse]="toggleNavbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a routerLink="/home" class="nav-link" routerLinkActive="active">Home </a>
+          <a routerLink="/about" class="nav-link" routerLinkActive="active">About </a>
         </li>
         <li class="nav-item">
           <a routerLink="/games" class="nav-link" routerLinkActive="active">Games</a>
@@ -25,7 +25,7 @@
           <a routerLink="user/login"   class="nav-link" routerLinkActive="active">Login</a>
         </ng-container>
         <ng-template #usertmp>
-          <span class="text-white">{{ (authService.user | async)?.email }}</span>
+          <span class="text-white">{{ (authService.user | async)?.name }}</span>
           <a class="nav-link" (click)= "logout()" href="">Logout</a>
         </ng-template>
 

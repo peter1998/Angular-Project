@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   email: FormControl;
   password: FormControl;
+  name : FormControl
 
   errorMessage: string;
   successMessage: string;
@@ -22,18 +23,19 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+    this.name = new FormControl("", [Validators.required]);
     this.email = new FormControl("", [Validators.required]);
     this.password = new FormControl("", [Validators.required]);
 
     this.registerForm = new FormGroup({
       'email': this.email,
-      'password': this.password
+      'password': this.password,
+      'name' :this.name
     });
   }
 
   register(){
-   this.authService.signup(this.email.value,this.password.value)
+   this.authService.signup(this.email.value,this.password.value,this.name.value)
    .then(value => {
      this.errorMessage = "";
      this.successMessage = "You have successfully registered and logged in,";

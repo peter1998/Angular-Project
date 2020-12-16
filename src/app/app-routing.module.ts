@@ -14,7 +14,7 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login'])
 
 const routes: Routes = [
 
-  {path: 'home', component: HomeComponent},
+  {path: 'about', component: HomeComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'user/login', component: LoginComponent},
   {path: 'user/register', component: RegisterComponent},

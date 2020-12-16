@@ -37,6 +37,7 @@ showGame(){
       .subscribe(value => 
         {
           this.game = value;
+          
         });
       }
 
