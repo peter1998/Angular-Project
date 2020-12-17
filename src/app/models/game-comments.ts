@@ -1,6 +1,6 @@
 export class GameComments
 {
-    Author: string;
-    description:string;
+    author: string;
+    comment:string;
     
 }

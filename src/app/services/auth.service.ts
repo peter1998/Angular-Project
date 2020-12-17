@@ -15,36 +15,19 @@ import { User } from '../models/user';
 export class AuthService {
 
   user: Observable<User>;
-  userDetails: User = null;
 
   constructor(private firebaseAuth: AngularFireAuth,
               private db: AngularFirestore) { 
       
-      //firebaseAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(_ => {
-
-        firebaseAuth.onAuthStateChanged(user => {
-            if (user) {
-              this.user = this.getDetails(user);
-              this.user.subscribe((userDetails) => {
-                this.userDetails = userDetails;
-              })
-            }
-          }
-        )
-
-    //})
-
-    /*
+    this.user = new Observable<User>();
+    
     firebaseAuth.authState.subscribe((user) => {
           if (user) {
             this.user = this.getDetails(user);
-            this.user.subscribe((user) => {
-              this.userDetails = user;
-            })
           }
         }
       );
-      */
+      
   }
 
   signup(email: string, password: string, name: string): Promise<any> {
@@ -85,11 +68,21 @@ export class AuthService {
             );
   }
 
-  isLoggedIn() {
-    return (this.userDetails != null);
+  isLoggedIn() : Observable<boolean> {
+    return of (this.user && (this.user !== of(null)));
   }
 
-  isInRole(role) : boolean{
-    return (this.userDetails?.role === role);
+  isAdmin() : Observable<boolean> {
+    return this.isInRole("admin");
+  }
+
+  isInRole(role) : Observable<boolean> {
+    return this.user
+          .pipe(
+              map( u => {
+                  return (u.role === role)
+                }
+              )
+          );
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../user/user.service';
 
@@ -11,11 +13,18 @@ export class NavbarComponent implements OnInit {
   
   toggleNavbar = true;
   
-  constructor(public useService: UserService,
-    public authService: AuthService) { }
+  constructor(private useService: UserService,
+             private authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
+    isLoggedIn$: Observable<boolean>;
+    user$: Observable<User>;
+    
+    ngOnInit(): void {
+      this.isLoggedIn$ = this.authService.isLoggedIn();
+      this.user$ = this.authService.user;
+
+      
+    }
 
     logout(){
       this.authService.logout()

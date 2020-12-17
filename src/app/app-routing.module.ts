@@ -9,8 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { RegisterComponent } from './register/register.component';
+import { AdminGuardService } from './services/admin-guard.service';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
+// const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['user/login']);
 
 const routes: Routes = [
 
@@ -23,8 +24,12 @@ const routes: Routes = [
   {path: 'games/:id', component: GameDetailsComponent},
   {path: 'games', component: GamesComponent},
  
-  {path:'edit/games/:id', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
-  {path:'edit/games', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  // {path:'edit/games/:id', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  // {path:'edit/games', component: EditGameComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }},
+  
+  {path:'edit/games/:id', component: EditGameComponent, canActivate: [AdminGuardService]},
+  {path:'edit/games', component: EditGameComponent, canActivate: [AdminGuardService]},
+
 
   {path: '', component: GamesComponent},
 

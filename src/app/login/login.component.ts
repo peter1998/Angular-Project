@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email.value, this.password.value)
       .then(value => {
         this.loginForm.reset();
-        console.log("login user details: " + this.authService.userDetails);
       })
       .catch(err => {
         this.errorMessage = "Invalid email and or password!";
