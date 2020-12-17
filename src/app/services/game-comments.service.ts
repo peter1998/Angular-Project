@@ -13,8 +13,8 @@ export class GameCommentsService {
 
   constructor(private db: AngularFirestore) { }
 
-  getComments(id: string) : Observable<GameComments[]>{
-    return this.db.collection<GameComments>('games').doc(id).collection('comments').snapshotChanges()
+  getComments(gameId: string) : Observable<GameComments[]>{
+    return this.db.collection<GameComments>('games').doc(gameId).collection('comments').snapshotChanges()
           .pipe(
               map( a => 
                 a.map( c => { return  c.payload.doc.data() as GameComments;} 
@@ -22,4 +22,12 @@ export class GameCommentsService {
                 )
           )
   }
+
+
+  submitComment(gameId:string, gameComments:GameComments): Promise<any>{
+    return this.db.collection<GameComments>('games').doc(gameId).collection('comments')
+    .add({ description: gameComments.comment,
+          author:gameComments.author
+    });
+    }
 }

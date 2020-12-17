@@ -1,12 +1,25 @@
-<p>game-comments works!</p>
-
 <div class="row">
 
-<div class="col-md-4" *ngFor="let comment of comments$ | async">
-    
-    <div class="card mb-4 shadow-sm" style="width: 18rem;">
-        <p >{{ comment.comment }}</p>
-        <p >author: {{ comment.author }}</p>              
+    <div class="col-md-4" *ngFor="let comment of comments$ | async">
+        
+        <div class="card mb-4 shadow-sm" style="width: 18rem;">
+            <p >{{ comment.comment }}</p>
+            <p >author: {{ comment.author }}</p>              
+        </div>
+
     </div>
 
+</div>
+
+<div class="row">
+    <div>
+        <form [formGroup]="commentForm">
+            <textarea  formControlName="description" class="form-control" required
+             [ngClass]="{'is-invalid': description.errors && (description.touched || description.dirty)}">
+
+            </textarea>>
+            <button (click)="addComent()" [disabled]="!commentForm.valid" type="submit">submit</button>
+        </form>
+    
+    </div>
 </div>

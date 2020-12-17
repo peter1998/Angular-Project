@@ -1,21 +1,23 @@
-<div *ngIf="game">
-    <p>
-        <img src="{{ game.image }}" alt="{{ game.title }}">
-    </p>
-    <p>
-      {{ game.title }}
-    </p>
-    <p>
-      {{ game.description }}
-    </p>
+<ng-container *ngIf="game">
 
-    
-      <button type="button" (click)="onEdit(game.id)" class="btn btn-primary" *ngIf="authService.user | async">Edit</button>
-      <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Return</button>
+  <div class="row">
+    <div>
+        <p>
+            <img src="{{ game.image }}" alt="{{ game.title }}">
+        </p>
+        <p>
+          {{ game.title }}
+        </p>
+        <p>
+          {{ game.description }}
+        </p>
 
-    
+        
+        <button type="button" (click)="onEdit(game.id)" class="btn btn-primary" *ngIf="authService.user | async">Edit</button>
+        <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Return</button>
+    </div>
+  </div>
 
+  <app-game-comments></app-game-comments>
 
-    
-</div>
-<app-game-comments></app-game-comments>
+</ng-container>
