@@ -14,18 +14,18 @@
         <li class="nav-item">
           <a routerLink="/games" class="nav-link" routerLinkActive="active">Games</a>
         </li>
-        <li class="nav-item">{{ (user$ | async)?.name }}
+        <li class="nav-item">
           <a routerLink="/contacts" class="nav-link" routerLinkActive="active">Contacts</a>
         </li>
       </ul>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
 
-          <ng-container *ngIf="!(user$  | async); else usertmp">
+          <ng-container *ngIf="!(user); else usertmp">
           <a routerLink="user/login"   class="nav-link" routerLinkActive="active">Login</a>
         </ng-container>
         <ng-template #usertmp>
-          <span class="text-white">{{ (user$ | async)?.name }}</span>
+          <span class="text-white">{{ user.name }}</span>
           <a class="nav-link" (click)= "logout()" href="">Logout</a>
         </ng-template>
 

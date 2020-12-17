@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GameComments } from '../models/game-comments';
+import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { GameCommentsService } from '../services/game-comments.service';
 
@@ -19,12 +20,18 @@ export class GameCommentsComponent implements OnInit {
   commentForm : FormGroup  
   description : FormControl
 
+  user:User;
 
   constructor(private service:GameCommentsService,
     private router:Router,
     public authService:AuthService,
     private activatedRoute: ActivatedRoute) 
-    { }
+    { 
+
+      this.authService.user.subscribe(u => {
+        this.user = u; 
+      })
+    }
 
 
   ngOnInit(): void {
@@ -35,18 +42,14 @@ export class GameCommentsComponent implements OnInit {
     this.commentForm = new FormGroup({
       'description' : this.description
     });
-
-    this.comments$.subscribe(d=>{
-      console.log(d);
-
-    })
   }
 
 
   addComent(){
 
     let gameComments:GameComments = new GameComments;
-    gameComments.author ='pepi';
+    
+    gameComments.author = this.user.name;
     gameComments.comment = this.description.value;
     this.service.submitComment(this.gameId,gameComments).then(
         c=> {

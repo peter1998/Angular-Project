@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
+import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../user/user.service';
 
@@ -17,7 +18,13 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
-  constructor(public authService: AuthService) { }
+  user:User
+
+  constructor(private authService: AuthService) { 
+    this.authService.user.subscribe( u => {
+      this.user = u;
+  });
+  }
 
   ngOnInit(): void {
 

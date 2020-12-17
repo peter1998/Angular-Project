@@ -1,16 +1,16 @@
 <div class="row">
 
     <!-- this header tag displays only when user is logged-in -->
-    <div *ngIf="authService.user | async">
+    <div *ngIf="user">
         <h3>Welcome</h3>
         <p>
-            {{ (authService.user | async)?.email }}
+            {{ user.name }}
         </p>
-        <button (click)="logout()" *ngIf="authService.user | async" class="btn btn-primary">Logout</button>
+        <button (click)="logout()"  class="btn btn-primary">Logout</button>
     </div>
 
     <!-- this div displays only when user is not-logged-in -->
-    <div *ngIf="!(authService.user | async)">
+    <div *ngIf="!(user)">
         
         <h2>Login</h2>
 

@@ -26,7 +26,7 @@ export class GameCommentsService {
 
   submitComment(gameId:string, gameComments:GameComments): Promise<any>{
     return this.db.collection<GameComments>('games').doc(gameId).collection('comments')
-    .add({ description: gameComments.comment,
+    .add({ comment: gameComments.comment,
           author:gameComments.author
     });
     }

@@ -12,9 +12,15 @@ import { UserService } from '../user/user.service';
 export class NavbarComponent implements OnInit {
   
   toggleNavbar = true;
+  user:User
   
   constructor(private useService: UserService,
-             private authService: AuthService) { }
+             private authService: AuthService) 
+  { 
+        this.authService.user.subscribe(u => {
+              this.user = u; 
+            });
+  }
 
     isLoggedIn$: Observable<boolean>;
     user$: Observable<User>;

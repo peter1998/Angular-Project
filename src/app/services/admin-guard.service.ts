@@ -1,3 +1,4 @@
+  
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -14,6 +15,6 @@ export class AdminGuardService implements CanActivate {
               state: RouterStateSnapshot,
     ) : Observable<boolean> 
     {
-      return this.authService.isLoggedIn() && this.authService.isInRole("admin");
+      return this.authService.isInRole("admin");
     }
 }

@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-
 import { Observable, of, Subscriber } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { switchMap } from 'rxjs/operators';
-
 import { User } from '../models/user';
 
 @Injectable({
@@ -19,24 +17,24 @@ export class AuthService {
   constructor(private firebaseAuth: AngularFireAuth,
               private db: AngularFirestore) { 
       
-    this.user = new Observable<User>();
-    
-    firebaseAuth.authState.subscribe((user) => {
-          if (user) {
-            this.user = this.getDetails(user);
+      this.user = this.firebaseAuth.authState.pipe(
+        switchMap(user => {
+          if (user){
+            return this.getDetails(user);
+          }else{
+            return of(null);
           }
         }
-      );
-      
+      )
+    )
   }
 
   signup(email: string, password: string, name: string): Promise<any> {
     return this.firebaseAuth
           .createUserWithEmailAndPassword(email, password)
           .then( u => {
-            return this.db.collection('users')
-                .doc(u.user.uid)
-                .set({role:"user", name: name});
+            return this.db.collection('users').doc(u.user.uid)
+                  .set({role:"user", name: name});
           });
   }
 
@@ -67,9 +65,16 @@ export class AuthService {
               )
             );
   }
-
+  
   isLoggedIn() : Observable<boolean> {
-    return of (this.user && (this.user !== of(null)));
+    return this.user
+            .pipe(
+              map (
+                u => {
+                  return (u !== null);
+                }
+              )
+            )
   }
 
   isAdmin() : Observable<boolean> {
@@ -80,7 +85,7 @@ export class AuthService {
     return this.user
           .pipe(
               map( u => {
-                  return (u.role === role)
+                  return ((u !== null) && (u.role === role));
                 }
               )
           );
