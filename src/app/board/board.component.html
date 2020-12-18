@@ -4,7 +4,7 @@
     
     <div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
 
-    <div *ngFor="let board of boards$ | async" class="alert alert-info">
+    <div *ngFor="let board of boards$ | async" class="alert alert-warning">
         <span class="glyphicon glyphicon-info-sign"></span> 
             <strong>{{board.author}}</strong>
         <hr class="message-inner-separator">
