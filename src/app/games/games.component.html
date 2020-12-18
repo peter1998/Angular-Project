@@ -1,27 +1,30 @@
-<div class="row mb-4" *ngIf="authService.user | async">
+<div *ngIf="isAdmin$ | async" class="row mb-4">
   <div class="col-md text-center">
     <button type="button" (click)="onAddNew()" class="btn btn-outline-primary btn-sm">Add New Game</button>
   </div>
 </div>
 
-
 <div class="row">
-  
-    <div class="col-md-4" *ngFor="let game of games$ | async">
 
-      <div class="card mb-4 shadow-sm" style="width: 18rem;">
-        <img src="{{ game.image }}" class="card-img-top" alt="{{ game.title }}">
-        <div class="card-body">
-          <h5 class="card-title"><a [routerLink]="['/games', game.id]">{{ game.title }}</a></h5>
-          <p class="card-text">{{ game.description }}</p>
-        </div>
+  <div class="col-md-4" *ngFor="let game of games$ | async">
+    <div class="card mb-4 shadow-sm" style="width: 18rem;">
+      <img src="{{ game.image }}" class="card-img-top" alt="{{ game.title }}">
+      
+      <div class="card-body">
+        <h5 class="card-title"><a [routerLink]="['/games', game.id]">{{ game.title }}</a></h5>
+        <p class="card-text">{{ game.description }}</p>
       </div>
 
-      <p class="text-center" *ngIf="authService.user | async">
-      
+      <p *ngIf="isAdmin$ | async" class="text-center">
         <button type="button" (click)="onEdit(game.id)" class="btn btn-outline-primary btn-sm">Edit</button>
         <button type="button" (click)="onDelete(game.id)" class="btn btn-outline-danger btn-sm">Delete</button>
       </p>
-    </div>
 
+    </div>
   </div>
+
+</div>
+
+<ng-container *ngIf="!(games$ | async)">
+  <div>Loading...</div>
+</ng-container>

@@ -17,19 +17,28 @@
         <li class="nav-item">
           <a routerLink="/contacts" class="nav-link" routerLinkActive="active">Contacts</a>
         </li>
+
+        <li *ngIf="(user)" class="nav-item" >
+          <a routerLink="/board" class="nav-link" routerLinkActive="active">Board</a>
+        </li>
       </ul>
       <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-
-          <ng-container *ngIf="!(user); else usertmp">
-          <a routerLink="user/login"   class="nav-link" routerLinkActive="active">Login</a>
+        
+        <ng-container *ngIf="!(user); else usertmp">
+            <li class="nav-item">
+              <a routerLink="user/login"   class="nav-link" routerLinkActive="active">Login</a>
+            </li>
         </ng-container>
         <ng-template #usertmp>
-          <span class="text-white">{{ user.name }}</span>
-          <a class="nav-link" (click)= "logout()" href="">Logout</a>
+          <li class="nav-item">  
+            <a routerLink="user/details"   class="nav-link" routerLinkActive="active">{{ user.name }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)= "logout()" href="">Logout</a>
+          </li>
         </ng-template>
 
-        </li>
+      
      </ul>
     </div>
     

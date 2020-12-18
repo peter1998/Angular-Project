@@ -27,6 +27,8 @@ import { EditGameComponent } from './edit-game/edit-game.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { GameCommentsComponent } from './game-comments/game-comments.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { BoardComponent } from './board/board.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { GameCommentsComponent } from './game-comments/game-comments.component';
     GameDetailsComponent,
     EditGameComponent,
     RegisterComponent,
-    GameCommentsComponent
+    GameCommentsComponent,
+    UserDetailsComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,

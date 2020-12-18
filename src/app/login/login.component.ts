@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../user/user.service';
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   user:User
 
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService,
+              private router: Router) { 
     this.authService.user.subscribe( u => {
       this.user = u;
   });
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email.value, this.password.value)
       .then(value => {
         this.loginForm.reset();
+        this.router.navigate(['/']);
       })
       .catch(err => {
         this.errorMessage = "Invalid email and or password!";
@@ -50,11 +53,10 @@ export class LoginComponent implements OnInit {
 
   logout(){
     this.authService.logout()
-    .then(value => {
-      this.loginForm.reset();
+    .then( t=> {
+      this.router.navigate(['/']);
     })
     .catch(err => {
-      this.errorMessage = "Something went wrong";
       console.log('Something went wrong:',err.message);
     });
   }

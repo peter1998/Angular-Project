@@ -51,6 +51,11 @@ export class AuthService {
           );
   }
 
+  update(userId : string, name : string): Promise<any> {
+    return this.db.collection('users').doc(userId)
+                  .set({name: name});
+  }
+
   private getDetails(user : firebase.User) : Observable<User>{
     return this.db.collection('users').doc<User>(user.uid)
           .get()

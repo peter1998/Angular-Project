@@ -96,4 +96,6 @@ export class EditGameComponent implements OnInit {
     this.router.navigate(path);
   }
 
+  
+
 }

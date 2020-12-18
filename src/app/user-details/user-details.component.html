@@ -1,0 +1,34 @@
+<div *ngIf="user" class="container form-signin">
+
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+    <div *ngIf="successMessage" class="alert alert-info" role="alert">{{successMessage}}</div>
+
+    <ng-container *ngIf="!edit else editTemplate">
+        <h3>Welcome</h3>
+        <p>
+            Name: {{ user.name }}
+        </p>
+        <p>
+            Email: {{ user.email }}
+        </p>
+        <button (click)="edit=true" class="btn btn-primary">Edit</button>
+    </ng-container>
+
+    <ng-template #editTemplate>
+        
+        <form [formGroup]="editForm">
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" formControlName="name" class="form-control" required
+                    [ngClass]="{'is-invalid': name.errors && (name.touched || name.dirty)}">
+            </div>
+
+            <button (click)="update()" [disabled]="!editForm.valid" class="btn btn-primary">Update</button>
+            &nbsp;
+            <button (click)="edit=false" class="btn btn-primary">Cancel</button>
+        </form>
+
+    </ng-template>
+
+</div>

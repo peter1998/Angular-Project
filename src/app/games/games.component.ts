@@ -13,16 +13,18 @@ import { AuthService } from '../services/auth.service';
 export class GamesComponent implements OnInit {
 
   games$: Observable<Game[]>;
+  isAdmin$: Observable<boolean>;
 
   constructor( 
     private activatedRoute: ActivatedRoute,
     private router:Router,
     private service:GameServiceService,
-    public authService:AuthService) 
+    private authService:AuthService) 
     { }
 
   ngOnInit(): void {
     this.games$=this.service.getGames();
+    this.isAdmin$ = this.authService.isAdmin()
   }
 
   onAddNew(){

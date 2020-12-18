@@ -1,5 +1,5 @@
-<h2 *ngIf = "id">EDIT</h2>
-<h2 *ngIf = "!id">NEW GAME</h2>
+<h2 *ngIf="id">EDIT</h2>
+<h2 *ngIf="!id">ADD NEW</h2>
 
 <div>
   <img src="{{ image.value }}" />
@@ -7,11 +7,11 @@
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
-        <label for="image">Image</label>
+        <label for="title">Image</label>
         <input formControlName="image" type="text" class="form-control" required
               [ngClass]="{'is-invalid': image.errors && (image.touched || image.dirty)}">
     </div>
-
+    
     <div class="form-group">
       <label for="title">Title</label>
       <input formControlName="title" type="text" class="form-control" required
@@ -21,12 +21,11 @@
     <div class="form-group">
       <label for="description">Description</label>
       <input formControlName="description" type="text" class="form-control" required
-          [ngClass]="{'is-invalid': description.errors && (description.touched || description.dirty)}">
+            [ngClass]="{'is-invalid': description.errors && (description.touched || description.dirty)}">
     </div>
-
-    
+  
     <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
-    <button type="button"  (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
-    
+    <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Cancel</button>
+
   </form>
 </div>
