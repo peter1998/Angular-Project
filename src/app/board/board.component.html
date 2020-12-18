@@ -1,21 +1,30 @@
 <div class="container">
     <h1>Messages Board</h1>
+    
+    
+    <div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
 
-    <div class="alert alert-info">
+    <div *ngFor="let board of boards$ | async" class="alert alert-info">
         <span class="glyphicon glyphicon-info-sign"></span> 
-            <strong>Info Message</strong>
+            <strong>{{board.author}}</strong>
         <hr class="message-inner-separator">
         <p>
-            This alert needs your attention, but it's not super important.
+            {{board.comment}}
         </p>
     </div>
 
-    <div class="alert alert-warning">
-        <span class="glyphicon glyphicon-record"></span> 
-            <strong>Warning Message</strong>
-        <hr class="message-inner-separator">
-        <p>
-            Best check yo self, you're not looking too good.</p>
-    </div>
+    <div class="container" *ngIf="user">
+    
+        <form [formGroup]="commentForm">
+            <textarea  formControlName="description" class="form-control" required
+             [ngClass]="{'is-invalid': description.errors && (description.touched || description.dirty)}">
+
+            </textarea>
+            <button (click)="addComent()" [disabled]="!commentForm.valid" type="submit">submit</button>
+        </form>
+    
+</div>
+
+   
 
 </div>

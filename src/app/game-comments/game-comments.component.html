@@ -1,5 +1,7 @@
 <div class="container mb-4">
 
+    <div *ngIf="error" class="alert alert-danger" role="alert">{{error}}</div>
+
     <div class="alert alert-info"  *ngFor="let comment of comments$ | async">
         <span class="glyphicon glyphicon-info-sign"></span> 
            author:  <strong>{{ comment.author }}</strong>

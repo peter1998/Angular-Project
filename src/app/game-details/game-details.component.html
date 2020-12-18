@@ -12,9 +12,10 @@
           {{ game.description }}
         </p>
 
-        
-        <button type="button" (click)="onEdit(game.id)" class="btn btn-primary" *ngIf="authService.user | async">Edit</button>
+        <p  class="text-center">
+        <button *ngIf="isAdmin$ | async" type="button" (click)="onEdit(game.id)" class="btn btn-primary">Edit</button>
         <button type="button" (click)="onCancel()" class="btn btn-outline-secondary">Return</button>
+        </p>
     </div>
   </div>
 

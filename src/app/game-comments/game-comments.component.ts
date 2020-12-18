@@ -21,10 +21,11 @@ export class GameCommentsComponent implements OnInit {
   description : FormControl
 
   user:User;
+  error:string;
 
   constructor(private service:GameCommentsService,
     private router:Router,
-    public authService:AuthService,
+    private authService:AuthService,
     private activatedRoute: ActivatedRoute) 
     { 
 
@@ -53,15 +54,10 @@ export class GameCommentsComponent implements OnInit {
     gameComments.comment = this.description.value;
     this.service.submitComment(this.gameId,gameComments).then(
         c=> {
-
           this.commentForm.reset();
-        }
-
-    );
+        }).catch (err => {
+          this.error = "Ooops something bad happen amigo . Dont worry";
+          console.log(err);
+        })
   }
-
-
-    
-  
-
 }

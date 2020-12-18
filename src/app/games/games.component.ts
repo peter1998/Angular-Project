@@ -25,6 +25,9 @@ export class GamesComponent implements OnInit {
   ngOnInit(): void {
     this.games$=this.service.getGames();
     this.isAdmin$ = this.authService.isAdmin()
+
+   
+    
   }
 
   onAddNew(){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { GameServiceService } from '../game-service.service';
 import { GamesComponent } from '../games/games.component';
 import { Game } from '../models/game';
@@ -14,6 +15,7 @@ export class GameDetailsComponent implements OnInit {
   
   game: Game;
   id: string;
+  isAdmin$: Observable<boolean>;
 
   constructor(private activatedroute: ActivatedRoute,
     private router:Router,
@@ -23,6 +25,7 @@ export class GameDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.isAdmin$ = this.authService.isAdmin()
     this.id = this.activatedroute.snapshot.paramMap.get("id");
     if(this.id !=null)
     {
