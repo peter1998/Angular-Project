@@ -1,4 +1,15 @@
-<div class="row">
+<div class="container mb-4">
+
+    <div class="alert alert-info"  *ngFor="let comment of comments$ | async">
+        <span class="glyphicon glyphicon-info-sign"></span> 
+           author:  <strong>{{ comment.author }}</strong>
+        <hr class="message-inner-separator">
+        <p>{{ comment.comment }}</p>
+    </div>
+
+</div>
+
+<!-- <div class="row">
 
     <div class="col-md-4" *ngFor="let comment of comments$ | async">
         
@@ -9,15 +20,15 @@
 
     </div>
 
-</div>
+</div> -->
 
-<div class="row">
+<div class="container" *ngIf="user">
     <div>
         <form [formGroup]="commentForm">
             <textarea  formControlName="description" class="form-control" required
              [ngClass]="{'is-invalid': description.errors && (description.touched || description.dirty)}">
 
-            </textarea>>
+            </textarea>
             <button (click)="addComent()" [disabled]="!commentForm.valid" type="submit">submit</button>
         </form>
     

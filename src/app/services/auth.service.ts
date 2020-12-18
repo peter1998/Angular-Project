@@ -44,11 +44,7 @@ export class AuthService {
   }
 
   logout(): Promise<any> {
-    return this.firebaseAuth.signOut()
-          .then( d => {
-            this.user = of(null);
-            }
-          );
+    return this.firebaseAuth.signOut();
   }
 
   update(userId : string, name : string): Promise<any> {
